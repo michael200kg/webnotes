@@ -1,0 +1,113 @@
+<ion-header class="header">
+  <ion-navbar>
+       <ion-title>ИЗМЕНЕНИЕ/СОЗДАНИЕ ЗАМЕТКИ </ion-title>
+  </ion-navbar>     
+</ion-header>
+
+<ion-content padding>
+
+   <ion-item>
+      <ion-label>Сделано</ion-label>
+      <ion-checkbox [(ngModel)]="note.checked" > </ion-checkbox>    
+    
+      <button item-right ion-button secondary (click)="toggleShowNames()">
+          Наименования
+          &nbsp;
+          <ion-icon name="arrow-down"></ion-icon>  
+      </button>
+   </ion-item>
+ 
+   <div *ngIf="showNames">
+  
+     <ion-item>
+        <ion-input class="title" *ngIf="note.username==username" [(ngModel)]="note.name" placeholder="Введите название" > </ion-input>
+        <div class="title" item-left *ngIf="note.username!=username">{{note.name}}</div>
+     </ion-item> 
+     <ion-item>
+        <ion-textarea class="text" *ngIf="note.username==username" [(ngModel)]="note.text" placeholder="Введите текст"></ion-textarea>
+        <div class="text" item-left *ngIf="note.username!=username">{{note.text}}</div>
+     </ion-item>
+
+  </div>
+
+  <ion-item>
+     <ion-label>Список заметок</ion-label>
+     <button *ngIf="note.username==username" item-right ion-button secondary (click)="showAddFields(true)">
+        Добавить в список
+        &nbsp;
+        <ion-icon name="arrow-down"></ion-icon>  
+     </button>
+  </ion-item>
+  
+  
+  <ion-list *ngIf="addingListElement">
+  
+  <ion-item>
+     <ion-input placeholder="Название" [(ngModel)]="itemName" > </ion-input>
+  </ion-item> 
+  <ion-item>
+     <ion-textarea placeholder="Описание" [(ngModel)]="itemDescription"></ion-textarea>
+  </ion-item>  
+  
+  <button item-right ion-button secondary (click)="addItemElement()">
+     <ion-icon name="done-all"></ion-icon>  
+     &nbsp;
+     Добавить
+  </button>
+  <button item-right ion-button secondary (click)="showAddFields(false)">
+     <ion-icon name="close"></ion-icon>  
+     &nbsp;  
+     Закрыть
+  </button>
+  
+  </ion-list>
+    
+
+
+
+<ion-list>      
+<ion-item  *ngFor="let item of note.items">
+      
+       <ion-checkbox [(ngModel)]="item.checked"   > </ion-checkbox>
+
+
+       <div item-left>
+       
+       
+         <div class="list title">{{item.itemName}}</div>
+         <div class="list text">{{item.itemDescription}}</div>
+       </div>
+      
+      <div *ngIf="note.username==username" item-right>
+      <button (click)="removeItemElement(item.itemId)" ion-button color="danger" round>
+            &nbsp;
+            <ion-icon name="close"></ion-icon>
+            &nbsp;
+         </button>
+       </div>
+</ion-item>           
+</ion-list>
+
+
+
+  <ion-item  *ngIf="note.username==username" >
+     <ion-label>Поделиться с</ion-label>
+     <ion-checkbox [(ngModel)]="note.shared" > </ion-checkbox>
+     <ion-select [(ngModel)]="note.sharedForUsername">
+        <ion-option value="MICHAEL" selected="true" >Майкл</ion-option>
+        <ion-option value="KOSHKA" >Женя</ion-option>
+     </ion-select>
+  </ion-item> 
+
+  <button ion-button secondary (click)="saveOneNote()">
+     <ion-icon name="cloud-upload"></ion-icon>  
+     &nbsp;  
+     Сохранить
+  </button>
+  <button ion-button secondary (click)="exit()">
+     <ion-icon name="close"></ion-icon>  
+     &nbsp;  
+     Закрыть
+  </button>
+
+</ion-content>

@@ -1,0 +1,12 @@
+<ion-header class="header">
+   <ion-item>
+      <ion-toggle [(ngModel)]="archive" (ionChange)="reloadData()"></ion-toggle> 
+      <button item-right (click)="exit()" ion-button color="danger" round>
+         &nbsp;<ion-icon name="power"></ion-icon>&nbsp;
+      </button>
+       <ion-icon item-left name="person"></ion-icon>  
+      <ion-select style="width:100px;" item-left multiple="false" (ionChange)="reloadData()" [(ngModel)]="username">
+         <ion-option *ngFor="let usr of users" selected="{{usr.username==username}}"  [value]="usr.username">{{usr.name}}</ion-option>
+      </ion-select>
+   </ion-item>    
+</ion-header>

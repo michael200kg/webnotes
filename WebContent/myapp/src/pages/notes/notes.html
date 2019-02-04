@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon> 
+    </button>
+    <ion-title>
+      {{title}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<div *ngIf="note!=null">{{note.text}}</div>
+
+<ion-content>
+ 
+  <ion-fab right bottom>
+      <button ion-fab color="danger" (click)="addOneNote()" ><ion-icon name="add"></ion-icon></button>
+  </ion-fab> 
+  
+  <ion-list>
+
+    <div ion-item *ngFor="let note of notes" >
+      
+      <ion-avatar item-left>
+         <ion-icon *ngIf="note.items!=null" name="checkbox" item-left></ion-icon>
+         <ion-icon *ngIf="note.items==null" name="list-box" item-left></ion-icon>
+      </ion-avatar>
+         
+      <div (click)="itemTapped(note)" >
+         <h2>
+            <div *ngIf="note.checked" style="text-decoration:line-through;">{{note.name}}</div><div *ngIf="!note.checked" >{{note.name}}</div>
+         </h2>
+         <h4 style="color:gray;">  
+            <div *ngIf="note.checked" style="text-decoration:line-through;">{{note.text}}</div>
+            <div *ngIf="!note.checked" >{{note.text}}</div>
+         </h4>
+      </div> 
+      <div *ngIf="note.username==username" item-right >
+         <button (click)="deleteOneNote(note)" ion-button color="danger" round>
+            &nbsp;
+            <ion-icon name="close"></ion-icon>
+            &nbsp;
+         </button>
+      </div> 
+      <div *ngIf="note.username==username" item-right >
+         <button (click)="archiveNote(note)" ion-button round>
+            &nbsp;
+            <ion-icon name="briefcase"></ion-icon>
+            &nbsp;
+         </button>
+      </div>     
+
+    
+    </div>
+
+  </ion-list>
+  
+</ion-content>

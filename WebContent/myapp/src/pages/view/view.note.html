@@ -1,0 +1,45 @@
+<ion-header class="header">
+    <ion-navbar>
+       <ion-toolbar>
+          <ion-title>Просмотр заметки</ion-title>
+       </ion-toolbar>   
+    </ion-navbar> 
+</ion-header>
+
+<ion-content padding>
+
+  <div>
+      <div class="title">{{note.name}}</div>
+      <br />
+      <div class="text">{{note.text}}</div>
+  </div>
+<br /><br />
+<ion-list *ngIf="note.items!=null">      
+  <ion-list-header>
+     Список заметок
+  </ion-list-header>
+     <ion-item  *ngFor="let item of note.items">
+      
+       <ion-checkbox [(ngModel)]="item.checked" (click)="setChecked(item)" > </ion-checkbox>
+
+       <div item-left>  
+         <div class="list title">{{item.itemName}}</div>
+         <div class="list text">{{item.itemDescription}}</div>
+       </div>
+
+   </ion-item>           
+</ion-list>
+
+
+  <button ion-button secondary (click)="editOneNote()">
+     <ion-icon name="cloud-upload"></ion-icon>  
+     &nbsp;  
+     Изменить
+  </button>
+  <button ion-button secondary (click)="exit()">
+     <ion-icon name="close"></ion-icon>  
+     &nbsp;  
+     Закрыть
+  </button>
+
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Главное меню</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+    <ion-item> 
+         <ion-icon item-left name="person"></ion-icon>  
+         <ion-select style="width:100px;padding:0px;" (ionChange)="onUserChange()" item-left multiple="false" [(ngModel)]="username">
+            <ion-option *ngFor="let usr of users" selected="{{usr.username==username}}"  [value]="usr.username">{{usr.name}}</ion-option>
+         </ion-select>
+     </ion-item>         
+      
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+         <ion-icon name="{{p.icon}}"></ion-icon>
+         &nbsp;&nbsp;&nbsp;{{p.title}}
+      </button>
+      <button color="danger" menuClose ion-item (click)="exitApp()">
+          <ion-icon name="power"></ion-icon>
+          &nbsp;&nbsp;&nbsp;Выход
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav #content swipeBackEnabled="false"></ion-nav>

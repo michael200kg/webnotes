@@ -1,0 +1,43 @@
+$title-gray: #888;
+$text-gray: #7d7d7d;
+
+
+.list .title {
+    font-family:Tahoma;
+    font-weight:bold;
+    font-size:0.9em;
+    color: $title-gray;	
+}
+
+.list .text {
+    font-family:Tahoma;
+    font-weight:normal;
+    font-size:0.8em;
+    color: $text-gray;	
+}
+
+.title {
+    font-family:Tahoma;
+    font-weight:bold;
+    font-size:1.2em;
+    color: $title-gray;	
+}
+
+.text {
+    font-family:Tahoma;
+    font-weight:normal;
+    font-size:1em;
+    color: $text-gray;	
+}
+
+.page-title {
+    font-family:Tahoma;
+    font-weight:normal;
+    font-size:1.3em;
+    color: $title-gray;	
+    padding: 5px;
+}
+
+.header {
+   background-color: #eee;
+}

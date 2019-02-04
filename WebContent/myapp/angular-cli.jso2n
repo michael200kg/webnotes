@@ -1,0 +1,10 @@
+{
+  "routes": [],
+  "scripts": [],
+  "mobile": [],
+  "defaults": {
+    "sourceDir": "src"
+  },
+  "apps": [{"mobile": false}]
+}
+
